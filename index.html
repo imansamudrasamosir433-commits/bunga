@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Buket Bunga Spesial untuk Dede Yoyo ❤️</title>
+  <style>
+    :root {
+      --primary: #ff758c;
+      --secondary: #ff7eb3;
+      --bg: #fff5f7;
+      --dark: #4a4a4a;
+    }
+
+    * {
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 99%, #fecfef 100%);
+      min-height: 100vh;
+      color: var(--dark);
+      padding: 20px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .container {
+      background: rgba(255, 255, 255, 0.95);
+      border-radius: 20px;
+      padding: 30px;
+      max-width: 900px;
+      width: 100%;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+      text-align: center;
+    }
+
+    h1 {
+      color: #e63946;
+      margin-bottom: 10px;
+    }
+
+    p.subtitle {
+      color: #666;
+      margin-bottom: 25px;
+      font-size: 1.1rem;
+    }
+
+    .step-title {
+      background: #ffe3e8;
+      padding: 10px 20px;
+      border-radius: 30px;
+      display: inline-block;
+      margin: 15px 0;
+      font-weight: bold;
+      color: #d62828;
+    }
+
+    /* Grid Bunga */
+    .flower-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+      gap: 12px;
+      max-height: 320px;
+      overflow-y: auto;
+      padding: 10px;
+      border: 2px dashed #ffb3c1;
+      border-radius: 15px;
+      margin-bottom: 20px;
+    }
+
+    .flower-card {
+      background: white;
+      border: 2px solid #f0f0f0;
+      border-radius: 12px;
+      padding: 10px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .flower-card:hover {
+      transform: translateY(-3px);
+      border-color: var(--primary);
+    }
+
+    .flower-card.selected {
+      border-color: #e63946;
+      background: #fff0f3;
+      box-shadow: 0 4px 10px rgba(230, 57, 70, 0.2);
+    }
+
+    .flower-emoji {
+      font-size: 2.2rem;
+      margin-bottom: 5px;
+    }
+
+    .flower-name {
+      font-size: 0.85rem;
+      font-weight: bold;
+    }
+
+    /* Grid Wrap */
+    .wrap-grid {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      flex-wrap: wrap;
+      margin-bottom: 25px;
+    }
+
+    .wrap-card {
+      padding: 12px 20px;
+      border-radius: 25px;
+      border: 2px solid #ddd;
+      cursor: pointer;
+      font-weight: bold;
+      transition: all 0.2s;
+    }
+
+    .wrap-card.selected {
+      color: white;
+      border-color: transparent;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+    }
+
+    .btn-submit {
+      background: linear-gradient(45deg, #ff758c, #ff7eb3);
+      color: white;
+      border: none;
+      padding: 15px 40px;
+      border-radius: 30px;
+      font-size: 1.2rem;
+      font-weight: bold;
+      cursor: pointer;
+      box-shadow: 0 5px 15px rgba(255, 117, 140, 0.4);
+      transition: transform 0.2s;
+    }
+
+    .btn-submit:hover {
+      transform: scale(1.05);
+    }
+
+    /* Modal Kejutan */
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0,0,0,0.6);
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+      padding: 20px;
+    }
+
+    .modal-content {
+      background: white;
+      padding: 30px;
+      border-radius: 20px;
+      max-width: 600px;
+      width: 100%;
+      max-height: 90vh;
+      overflow-y: auto;
+      text-align: center;
+      animation: popIn 0.4s ease;
+    }
+
+    @keyframes popIn {
+      0% { transform: scale(0.7); opacity: 0; }
+      100% { transform: scale(1); opacity: 1; }
+    }
+
+    .bouquet-preview {
+      font-size: 4rem;
+      margin: 15px 0;
+      padding: 20px;
+      border-radius: 15px;
+      display: inline-block;
+    }
+
+    .meaning-list {
+      text-align: left;
+      margin: 20px 0;
+      background: #fff8f9;
+      padding: 15px;
+      border-radius: 10px;
+    }
+
+    .meaning-item {
+      margin-bottom: 8px;
+      font-size: 0.95rem;
+    }
+
+    .love-message {
+      font-style: italic;
+      color: #e63946;
+      margin-top: 15px;
+      font-size: 1.1rem;
+    }
+
+    .btn-close {
+      margin-top: 15px;
+      background: #6c757d;
+      color: white;
+      border: none;
+      padding: 8px 20px;
+      border-radius: 20px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h1>Buket Digital Spesial 💐</h1>
+    <p class="subtitle">Meskipun kita LDR-an, aku mau Dede Yoyo racik buket bunga impianmu sendiri hari ini! ❤️</p>
+
+    <div class="step-title">Pilih Bunga Favoritmu (Pilih 1 - 5 Bunga):</div>
+    <div class="flower-grid" id="flowerContainer"></div>
+
+    <div class="step-title">Pilih Warna Pembungkus (Wrap):</div>
+    <div class="wrap-grid" id="wrapContainer"></div>
+
+    <button class="btn-submit" onclick="showSurprise()">Buka Kejutannya! ✨</button>
+  </div>
+
+  <!-- Modal Kejutan -->
+  <div class="modal" id="surpriseModal">
+    <div class="modal-content">
+      <h2>🎉 Kejutan Spesial Untuk Dede Yoyo! 🎉</h2>
+      
+      <div class="bouquet-preview" id="bouquetVisual"></div>
+
+      <h3>Arti dari Buket Pilihan Dede Yoyo:</h3>
+      <div class="meaning-list" id="meaningList"></div>
+
+      <div class="love-message">
+        "Meskipun jarak memisahkan kita sekarang, setiap bunga di buket ini mewakili rasa sayang dan kangenku ke Dede Yoyo. Terima kasih ya sudah bertahan dan berjuang bareng aku. I love you so much! ❤️"
+      </div>
+
+      <button class="btn-close" onclick="closeModal()">Rangkai Ulang 🔄</button>
+    </div>
+  </div>
+
+  <script>
+    // 20+ Daftar Bunga & Artinya
+    const flowers = [
+      { name: "Mawar Merah", emoji: "🌹", meaning: "Cinta sejati dan hasrat yang mendalam." },
+      { name: "Mawar Putih", emoji: "⚪", meaning: "Ketulusan, kesucian, dan kepolosan cinta." },
+      { name: "Mawar Merah Muda", emoji: "🌸", meaning: "Kagum, kelembutan, dan rasa syukur." },
+      { name: "Tulip Merah", emoji: "🌷", meaning: "Deklarasi cinta yang sempurna." },
+      { name: "Tulip Kuning", emoji: "🟡", meaning: "Kecerahan dan senyuman yang hangat." },
+      { name: "Matahari", emoji: "🌻", meaning: "Kesetiaan, kehangatan, dan kebahagiaan." },
+      { name: "Daisy / Seruni", emoji: "🌼", meaning: "Keceriaan, kepolosan, dan awal baru." },
+      { name: "Lily Putih", emoji: "🪷", meaning: "Kemurnian hati dan kebangkitan." },
+      { name: "Orkid / Anggrek", emoji: "🌺", meaning: "Keindahan yang langka dan keanggunan." },
+      { name: "Sakura", emoji: "🌸", meaning: "Keindahan hidup dan momen berharga." },
+      { name: "Lavender", emoji: "🪻", meaning: "Ketenangan, kedamaian, dan kesetiaan." },
+      { name: "Forget-Me-Not", emoji: "💙", meaning: "Kenangan abadi dan pesan 'Jangan lupakan aku'." },
+      { name: "Hydrangea", emoji: "🫐", meaning: "Rasa terima kasih yang tulus dari hati." },
+      { name: "Carnation Merah", emoji: "🌺", meaning: "Rasa kagum dan cinta yang mendalam." },
+      { name: "Carnation Pink", emoji: "🌸", meaning: "Cinta abadi yang tidak akan pernah pudar." },
+      { name: "Baby's Breath", emoji: "🤍", meaning: "Cinta murni dan keabadian." },
+      { name: "Melati", emoji: "⚪", meaning: "Keharuman cinta dan kerendahan hati." },
+      { name: "Peony", emoji: "🏵️", meaning: "Keberuntungan, pernikahan bahagia, dan cinta." },
+      { name: "Iris", emoji: "💜", meaning: "Harapan, kepercayaan, dan persahabatan sejati." },
+      { name: "Aster", emoji: "🟣", meaning: "Cinta yang sabar dan keanggunan." },
+      { name: "Kamomil", emoji: "🌼", meaning: "Kekuatan dalam menghadapi tantangan/LDR." },
+      { name: "Dahlia", emoji: "🏵️", meaning: "Ikatan yang kuat dan komitmen." }
+    ];
+
+    // Pilihan Wrap
+    const wraps = [
+      { name: "Pink Soft", color: "#ffb3c1" },
+      { name: "Elegat Black", color: "#333333" },
+      { name: "Pastel Blue", color: "#a2d2ff" },
+      { name: "Classic White", color: "#f8f9fa" },
+      { name: "Gold Luxury", color: "#ffe5ec" }
+    ];
+
+    let selectedFlowers = [];
+    let selectedWrap = wraps[0];
+
+    // Render Bunga
+    const flowerContainer = document.getElementById('flowerContainer');
+    flowers.forEach((flower, index) => {
+      const card = document.createElement('div');
+      card.className = 'flower-card';
+      card.innerHTML = `
+        <div class="flower-emoji">${flower.emoji}</div>
+        <div class="flower-name">${flower.name}</div>
+      `;
+      card.onclick = () => toggleFlower(index, card);
+      flowerContainer.appendChild(card);
+    });
+
+    // Render Wrap
+    const wrapContainer = document.getElementById('wrapContainer');
+    wraps.forEach((wrap, index) => {
+      const card = document.createElement('div');
+      card.className = `wrap-card ${index === 0 ? 'selected' : ''}`;
+      card.style.backgroundColor = wrap.color;
+      card.style.color = wrap.color === '#333333' ? 'white' : '#333';
+      card.innerText = wrap.name;
+      card.onclick = () => selectWrap(wrap, card);
+      wrapContainer.appendChild(card);
+    });
+
+    function toggleFlower(index, element) {
+      const flower = flowers[index];
+      const existIndex = selectedFlowers.findIndex(f => f.name === flower.name);
+
+      if (existIndex > -1) {
+        selectedFlowers.splice(existIndex, 1);
+        element.classList.remove('selected');
+      } else {
+        if (selectedFlowers.length >= 5) {
+          alert("Maksimal pilih 5 jenis bunga ya Dede Yoyo manis! ❤️");
+          return;
+        }
+        selectedFlowers.push(flower);
+        element.classList.add('selected');
+      }
+    }
+
+    function selectWrap(wrap, element) {
+      selectedWrap = wrap;
+      document.querySelectorAll('.wrap-card').forEach(c => c.classList.remove('selected'));
+      element.classList.add('selected');
+    }
+
+    function showSurprise() {
+      if (selectedFlowers.length === 0) {
+        alert("Pilih minimal 1 bunga dulu yaa Dede Yoyo! ❤️");
+        return;
+      }
+
+      // Render Buket Visual
+      const bouquetVisual = document.getElementById('bouquetVisual');
+      bouquetVisual.style.backgroundColor = selectedWrap.color;
+      bouquetVisual.innerHTML = selectedFlowers.map(f => f.emoji).join(' ');
+
+      // Render Arti Bunga
+      const meaningList = document.getElementById('meaningList');
+      meaningList.innerHTML = selectedFlowers.map(f => `
+        <div class="meaning-item">
+          <strong>${f.emoji} ${f.name}:</strong> ${f.meaning}
+        </div>
+      `).join('');
+
+      document.getElementById('surpriseModal').style.display = 'flex';
+    }
+
+    function closeModal() {
+      document.getElementById('surpriseModal').style.display = 'none';
+    }
+  </script>
+</body>
+</html>
