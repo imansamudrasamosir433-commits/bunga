@@ -164,7 +164,7 @@
       background: white;
       padding: 30px;
       border-radius: 20px;
-      max-width: 600px;
+      max-width: 650px;
       width: 100%;
       max-height: 90vh;
       overflow-y: auto;
@@ -178,16 +178,16 @@
     }
 
     .bouquet-preview {
-      font-size: 4rem;
+      font-size: 3.5rem;
       margin: 15px 0;
-      padding: 20px;
+      padding: 15px;
       border-radius: 15px;
       display: inline-block;
     }
 
     .meaning-list {
       text-align: left;
-      margin: 20px 0;
+      margin: 15px 0;
       background: #fff8f9;
       padding: 15px;
       border-radius: 10px;
@@ -195,22 +195,33 @@
 
     .meaning-item {
       margin-bottom: 8px;
-      font-size: 0.95rem;
+      font-size: 0.9rem;
     }
 
-    .love-message {
-      font-style: italic;
+    .essay-box {
+      background: #fff0f3;
+      border-left: 4px solid #e63946;
+      padding: 18px;
+      border-radius: 10px;
+      text-align: justify;
+      margin-top: 20px;
+      font-size: 0.95rem;
+      line-height: 1.6;
+      color: #333;
+    }
+
+    .essay-box h4 {
       color: #e63946;
-      margin-top: 15px;
-      font-size: 1.1rem;
+      margin-bottom: 10px;
+      text-align: center;
     }
 
     .btn-close {
-      margin-top: 15px;
+      margin-top: 20px;
       background: #6c757d;
       color: white;
       border: none;
-      padding: 8px 20px;
+      padding: 10px 25px;
       border-radius: 20px;
       cursor: pointer;
     }
@@ -241,39 +252,41 @@
       <h3>Arti dari Buket Pilihan Dede Yoyo:</h3>
       <div class="meaning-list" id="meaningList"></div>
 
-      <div class="love-message">
-        "Meskipun jarak memisahkan kita sekarang, setiap bunga di buket ini mewakili rasa sayang dan kangenku ke Dede Yoyo. Terima kasih ya sudah bertahan dan berjuang bareng aku. I love you so much! ❤️"
+      <!-- Esai Ungkapan Syukur Otomatis -->
+      <div class="essay-box" id="essayBox">
+        <h4>💌 Surat & Ungkapan Bersyukurku Untuk Dede Yoyo</h4>
+        <p id="essayContent"></p>
       </div>
 
-      <button class="btn-close" onclick="closeModal()">Rangkai Ulang 🔄</button>
+      <button class="btn-close" onclick="closeModal()">Coba Racik Bunga Lain 🔄</button>
     </div>
   </div>
 
   <script>
-    // 20+ Daftar Bunga & Artinya
+    // 20+ Daftar Bunga lengkap dengan fragmen narasi syukur uniknya
     const flowers = [
-      { name: "Mawar Merah", emoji: "🌹", meaning: "Cinta sejati dan hasrat yang mendalam." },
-      { name: "Mawar Putih", emoji: "⚪", meaning: "Ketulusan, kesucian, dan kepolosan cinta." },
-      { name: "Mawar Merah Muda", emoji: "🌸", meaning: "Kagum, kelembutan, dan rasa syukur." },
-      { name: "Tulip Merah", emoji: "🌷", meaning: "Deklarasi cinta yang sempurna." },
-      { name: "Tulip Kuning", emoji: "🟡", meaning: "Kecerahan dan senyuman yang hangat." },
-      { name: "Matahari", emoji: "🌻", meaning: "Kesetiaan, kehangatan, dan kebahagiaan." },
-      { name: "Daisy / Seruni", emoji: "🌼", meaning: "Keceriaan, kepolosan, dan awal baru." },
-      { name: "Lily Putih", emoji: "🪷", meaning: "Kemurnian hati dan kebangkitan." },
-      { name: "Orkid / Anggrek", emoji: "🌺", meaning: "Keindahan yang langka dan keanggunan." },
-      { name: "Sakura", emoji: "🌸", meaning: "Keindahan hidup dan momen berharga." },
-      { name: "Lavender", emoji: "🪻", meaning: "Ketenangan, kedamaian, dan kesetiaan." },
-      { name: "Forget-Me-Not", emoji: "💙", meaning: "Kenangan abadi dan pesan 'Jangan lupakan aku'." },
-      { name: "Hydrangea", emoji: "🫐", meaning: "Rasa terima kasih yang tulus dari hati." },
-      { name: "Carnation Merah", emoji: "🌺", meaning: "Rasa kagum dan cinta yang mendalam." },
-      { name: "Carnation Pink", emoji: "🌸", meaning: "Cinta abadi yang tidak akan pernah pudar." },
-      { name: "Baby's Breath", emoji: "🤍", meaning: "Cinta murni dan keabadian." },
-      { name: "Melati", emoji: "⚪", meaning: "Keharuman cinta dan kerendahan hati." },
-      { name: "Peony", emoji: "🏵️", meaning: "Keberuntungan, pernikahan bahagia, dan cinta." },
-      { name: "Iris", emoji: "💜", meaning: "Harapan, kepercayaan, dan persahabatan sejati." },
-      { name: "Aster", emoji: "🟣", meaning: "Cinta yang sabar dan keanggunan." },
-      { name: "Kamomil", emoji: "🌼", meaning: "Kekuatan dalam menghadapi tantangan/LDR." },
-      { name: "Dahlia", emoji: "🏵️", meaning: "Ikatan yang kuat dan komitmen." }
+      { name: "Mawar Merah", emoji: "🌹", meaning: "Cinta sejati dan hasrat yang mendalam.", note: "Aku sangat bersyukur memiliki rasa cinta semendalam ini padamu. Kehadiranmu memberi warna merah yang membara dalam hidupku meskipun jarak memisahkan." },
+      { name: "Mawar Putih", emoji: "⚪", meaning: "Ketulusan, kesucian, dan kepolosan cinta.", note: "Aku bersyukur atas ketulusan hatimu yang selalu menerima aku apa adanya. Cinta tulus Yoyo adalah tempatku pulang paling damai." },
+      { name: "Mawar Merah Muda", emoji: "🌸", meaning: "Kagum, kelembutan, dan rasa syukur.", note: "Aku tidak pernah berhenti bersyukur dan kagum melihat kelembutan hatimu. Yoyo selalu tahu cara meredakan kekhawatiranku." },
+      { name: "Tulip Merah", emoji: "🌷", meaning: "Deklarasi cinta yang sempurna.", note: "Setiap hari aku bersyukur karena takdir mempertemukanku denganmu—jawaban sempurna atas doa-doaku." },
+      { name: "Tulip Kuning", emoji: "🟡", meaning: "Kecerahan dan senyuman yang hangat.", note: "Aku sangat bersyukur atas senyumanmu yang selalu menjadi sinar matahari di hari-hariku yang sepi." },
+      { name: "Matahari", emoji: "🌻", meaning: "Kesetiaan, kehangatan, dan kebahagiaan.", note: "Terima kasih dan aku bersyukur Yoyo selalu setia menghangatkan hatiku, membuat LDR ini terasa penuh harapan." },
+      { name: "Daisy / Seruni", emoji: "🌼", meaning: "Keceriaan, kepolosan, dan awal baru.", note: "Bersyukur sekali punya Yoyo yang selalu membawa keceriaan sederhana tapi sangat berarti dalam keseharianku." },
+      { name: "Lily Putih", emoji: "🪷", meaning: "Kemurnian hati dan kebangkitan.", note: "Aku bersyukur memiliki seseorang dengan kebaikan hati sepertimu yang selalu memberikan energi positif setiap hari." },
+      { name: "Orkid / Anggrek", emoji: "🌺", meaning: "Keindahan yang langka dan keanggunan.", note: "Yoyo adalah sosok yang sangat istimewa dan langka. Aku bersyukur Tuhan mempercayakanku untuk menjagamu." },
+      { name: "Sakura", emoji: "🌸", meaning: "Keindahan hidup dan momen berharga.", note: "Setiap detik obrolan dan video call dengan Yoyo adalah momen berharga yang selalu aku syukuri." },
+      { name: "Lavender", emoji: "🪻", meaning: "Ketenangan, kedamaian, dan kesetiaan.", note: "Mendengar suaramu saja sudah cukup membuat hatiku tenang. Aku bersyukur Yoyo selalu jadi tempat ketenanganku." },
+      { name: "Forget-Me-Not", emoji: "💙", meaning: "Kenangan abadi dan kenangan indah.", note: "Jarak tidak mengurangi ingatan indah kita. Aku bersyukur tiap kenangan tentang Yoyo selalu manis di hatiku." },
+      { name: "Hydrangea", emoji: "🫐", meaning: "Rasa terima kasih yang tulus dari hati.", note: "Dari lubuk hati yang paling dalam, aku bersyukur atas segala perhatian, kesabaran, dan waktu yang Yoyo berikan." },
+      { name: "Carnation Merah", emoji: "🌺", meaning: "Rasa kagum dan cinta yang mendalam.", note: "Aku bersyukur karena setiap harinya rasa kagumku pada perjuangan dan kebaikan Yoyo makin bertambah." },
+      { name: "Carnation Pink", emoji: "🌸", meaning: "Cinta abadi yang tidak akan pernah pudar.", note: "Aku bersyukur cinta kita terus bertahan melintasi jarak, membuktikan bahwa perasaan ini nyata dan pudar." },
+      { name: "Baby's Breath", emoji: "🤍", meaning: "Cinta murni dan keabadian.", note: "Bersyukur atas hubungan murni yang kita jaga bersama. Harapanku sederhana: ingin terus bersamamu selamanya." },
+      { name: "Melati", emoji: "⚪", meaning: "Keharuman cinta dan kerendahan hati.", note: "Kesederhanaan dan kerendahan hatimu adalah hal yang paling aku syukuri. Kamu sangat berarti untukku." },
+      { name: "Peony", emoji: "🏵️", meaning: "Keberuntungan dan kebahagiaan.", note: "Aku merasa menjadi orang paling beruntung di dunia ini karena memiliki Yoyo di sisiku." },
+      { name: "Iris", emoji: "💜", meaning: "Harapan, kepercayaan, dan persahabatan sejati.", note: "Aku bersyukur Yoyo bukan hanya pasangan, tapi juga sahabat terbaik tempatku berbagi cerita apa saja." },
+      { name: "Aster", emoji: "🟣", meaning: "Cinta yang sabar dan keanggunan.", note: "Terima kasih dan bersyukur atas kesabaran Yoyo seluas samudra dalam menjalani hubungan jarak jauh ini." },
+      { name: "Kamomil", emoji: "🌼", meaning: "Kekuatan dalam menghadapi tantangan/LDR.", note: "Aku bersyukur kita berdua sama-sama kuat dan saling menguatkan meski terpisah jarak dan waktu." },
+      { name: "Dahlia", emoji: "🏵️", meaning: "Ikatan yang kuat dan komitmen.", note: "Aku bersyukur atas komitmen kuat yang Yoyo genggam bersama sampai hari ini. Aku sayang banget sama Yoyo!" }
     ];
 
     // Pilihan Wrap
@@ -336,6 +349,14 @@
       element.classList.add('selected');
     }
 
+    function generateEssay(selectedList) {
+      let opening = "Haloo Dede Yoyo manis, lewat buket bunga indah yang kamu racik ini, aku ingin menyampaikan betapa bersyukurnya aku memilikimu. ";
+      let body = selectedList.map(f => f.note).join(" ");
+      let closing = ` Walaupun kita sedang LDR dan tidak bisa tatap muka secara langsung, kombinasi bunga ${selectedList.map(f=>f.name).join(', ')} ini adalah bukti betapa indahnya rasa syukur dan sayagku ke Yoyo. Terima kasih sudah selalu ada untukku yaa. I love you so much, Dede Yoyo! ❤️`;
+
+      return opening + body + closing;
+    }
+
     function showSurprise() {
       if (selectedFlowers.length === 0) {
         alert("Pilih minimal 1 bunga dulu yaa Dede Yoyo! ❤️");
@@ -354,6 +375,10 @@
           <strong>${f.emoji} ${f.name}:</strong> ${f.meaning}
         </div>
       `).join('');
+
+      // Render Esai Syukur Otomatis
+      const essayContent = document.getElementById('essayContent');
+      essayContent.innerText = generateEssay(selectedFlowers);
 
       document.getElementById('surpriseModal').style.display = 'flex';
     }
