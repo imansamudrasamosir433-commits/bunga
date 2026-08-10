@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Buket Bunga Spesial untuk Dede Yoyo ❤️</title>
+  <title>Buket & Photobooth Spesial Dede Yoyo ❤️</title>
   <style>
     :root {
       --primary: #ff758c;
@@ -15,15 +15,14 @@
     * {
       box-sizing: border-box;
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      margin: 0;
-      padding: 0;
+      margin: 0; padding: 0;
     }
 
     body {
-      background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 99%, #fecfef 100%);
+      background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 100%);
       min-height: 100vh;
       color: var(--dark);
-      padding: 20px;
+      padding: 20px 10px;
       display: flex;
       justify-content: center;
       align-items: center;
@@ -32,52 +31,45 @@
     .container {
       background: rgba(255, 255, 255, 0.95);
       border-radius: 20px;
-      padding: 30px;
+      padding: 25px;
       max-width: 900px;
       width: 100%;
       box-shadow: 0 10px 30px rgba(0,0,0,0.15);
       text-align: center;
     }
 
-    h1 {
-      color: #e63946;
-      margin-bottom: 10px;
-    }
-
-    p.subtitle {
-      color: #666;
-      margin-bottom: 25px;
-      font-size: 1.1rem;
-    }
+    h1 { color: #e63946; margin-bottom: 8px; font-size: 1.8rem; }
+    p.subtitle { color: #666; margin-bottom: 20px; font-size: 1rem; }
 
     .step-title {
       background: #ffe3e8;
-      padding: 10px 20px;
+      padding: 8px 18px;
       border-radius: 30px;
       display: inline-block;
-      margin: 15px 0;
+      margin: 15px 0 10px 0;
       font-weight: bold;
       color: #d62828;
+      font-size: 0.95rem;
     }
 
-    /* Grid Bunga */
+    /* Grid Bunga Bergambar */
     .flower-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
-      gap: 12px;
+      grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
+      gap: 10px;
       max-height: 320px;
       overflow-y: auto;
       padding: 10px;
       border: 2px dashed #ffb3c1;
       border-radius: 15px;
-      margin-bottom: 20px;
+      margin-bottom: 15px;
     }
 
     .flower-card {
       background: white;
       border: 2px solid #f0f0f0;
       border-radius: 12px;
-      padding: 10px;
+      padding: 8px;
       cursor: pointer;
       transition: all 0.2s ease;
       display: flex;
@@ -85,161 +77,178 @@
       align-items: center;
     }
 
-    .flower-card:hover {
-      transform: translateY(-3px);
-      border-color: var(--primary);
+    .flower-card:hover { transform: translateY(-3px); border-color: var(--primary); }
+    .flower-card.selected { border-color: #e63946; background: #fff0f3; box-shadow: 0 4px 10px rgba(230,57,70,0.2); }
+
+    .flower-img {
+      width: 70px;
+      height: 70px;
+      object-fit: cover;
+      border-radius: 50%;
+      margin-bottom: 6px;
     }
 
-    .flower-card.selected {
-      border-color: #e63946;
-      background: #fff0f3;
-      box-shadow: 0 4px 10px rgba(230, 57, 70, 0.2);
-    }
-
-    .flower-emoji {
-      font-size: 2.2rem;
-      margin-bottom: 5px;
-    }
-
-    .flower-name {
-      font-size: 0.85rem;
-      font-weight: bold;
-    }
+    .flower-name { font-size: 0.8rem; font-weight: bold; }
 
     /* Grid Wrap */
     .wrap-grid {
       display: flex;
       justify-content: center;
-      gap: 15px;
+      gap: 10px;
       flex-wrap: wrap;
-      margin-bottom: 25px;
+      margin-bottom: 20px;
     }
 
     .wrap-card {
-      padding: 12px 20px;
-      border-radius: 25px;
+      padding: 8px 16px;
+      border-radius: 20px;
       border: 2px solid #ddd;
       cursor: pointer;
       font-weight: bold;
+      font-size: 0.85rem;
       transition: all 0.2s;
     }
 
-    .wrap-card.selected {
-      color: white;
-      border-color: transparent;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.15);
-    }
+    .wrap-card.selected { color: white; border-color: transparent; box-shadow: 0 4px 10px rgba(0,0,0,0.15); }
 
-    .btn-submit {
+    .btn-action {
       background: linear-gradient(45deg, #ff758c, #ff7eb3);
       color: white;
       border: none;
-      padding: 15px 40px;
+      padding: 12px 30px;
       border-radius: 30px;
-      font-size: 1.2rem;
+      font-size: 1.1rem;
       font-weight: bold;
       cursor: pointer;
       box-shadow: 0 5px 15px rgba(255, 117, 140, 0.4);
-      transition: transform 0.2s;
+      margin: 5px;
     }
 
-    .btn-submit:hover {
-      transform: scale(1.05);
-    }
-
-    /* Modal Kejutan */
+    /* Modal Pop-up */
     .modal {
       display: none;
       position: fixed;
       top: 0; left: 0;
       width: 100%; height: 100%;
-      background: rgba(0,0,0,0.6);
+      background: rgba(0,0,0,0.7);
       justify-content: center;
       align-items: center;
       z-index: 1000;
-      padding: 20px;
+      padding: 15px;
     }
 
     .modal-content {
       background: white;
-      padding: 30px;
+      padding: 25px;
       border-radius: 20px;
       max-width: 650px;
       width: 100%;
       max-height: 90vh;
       overflow-y: auto;
       text-align: center;
-      animation: popIn 0.4s ease;
     }
 
-    @keyframes popIn {
-      0% { transform: scale(0.7); opacity: 0; }
-      100% { transform: scale(1); opacity: 1; }
-    }
-
-    .bouquet-preview {
-      font-size: 3.5rem;
-      margin: 15px 0;
+    .bouquet-visual {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 5px;
       padding: 15px;
       border-radius: 15px;
-      display: inline-block;
-    }
-
-    .meaning-list {
-      text-align: left;
       margin: 15px 0;
-      background: #fff8f9;
-      padding: 15px;
-      border-radius: 10px;
+      min-height: 100px;
+      flex-wrap: wrap;
     }
 
-    .meaning-item {
-      margin-bottom: 8px;
-      font-size: 0.9rem;
+    .bouquet-visual img {
+      width: 60px;
+      height: 60px;
+      object-fit: cover;
+      border-radius: 50%;
+      border: 2px solid white;
     }
 
     .essay-box {
       background: #fff0f3;
       border-left: 4px solid #e63946;
-      padding: 18px;
+      padding: 15px;
       border-radius: 10px;
       text-align: justify;
-      margin-top: 20px;
-      font-size: 0.95rem;
-      line-height: 1.6;
-      color: #333;
+      margin-top: 15px;
+      font-size: 0.9rem;
+      line-height: 1.5;
     }
 
-    .essay-box h4 {
+    .btn-wa { background: #25d366; color: white; }
+    .btn-email { background: #ea4335; color: white; }
+    .btn-camera { background: #007bff; color: white; }
+    .btn-secondary { background: #6c757d; color: white; }
+
+    /* Section Photobooth */
+    .photobooth-container {
+      position: relative;
+      width: 100%;
+      max-width: 400px;
+      margin: 15px auto;
+      border-radius: 15px;
+      overflow: hidden;
+      border: 4px solid #ff758c;
+      background: #000;
+    }
+
+    video, canvas { width: 100%; display: block; }
+
+    .frame-overlay {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      pointer-events: none;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 10px;
+      box-sizing: border-box;
+    }
+
+    .frame-header {
+      background: rgba(255,255,255,0.8);
+      padding: 5px;
+      border-radius: 10px;
+      font-size: 0.8rem;
+      font-weight: bold;
       color: #e63946;
-      margin-bottom: 10px;
-      text-align: center;
     }
 
-    .btn-close {
-      margin-top: 20px;
-      background: #6c757d;
-      color: white;
-      border: none;
-      padding: 10px 25px;
-      border-radius: 20px;
-      cursor: pointer;
+    .frame-footer {
+      background: rgba(255,255,255,0.85);
+      padding: 8px;
+      border-radius: 10px;
+      display: flex;
+      justify-content: center;
+      gap: 5px;
     }
+
+    .frame-footer img { width: 35px; height: 35px; border-radius: 50%; object-fit: cover; }
   </style>
 </head>
 <body>
 
   <div class="container">
     <h1>Buket Digital Spesial 💐</h1>
-    <p class="subtitle">Meskipun kita LDR-an, aku mau Dede Yoyo racik buket bunga impianmu sendiri hari ini! ❤️</p>
+    <p class="subtitle">Meskipun LDR, yuk racik buket bunga impian Dede Yoyo sendiri hari ini! ❤️</p>
 
-    <div class="step-title">Pilih Bunga Favoritmu (Pilih 1 - 5 Bunga):</div>
+    <!-- Isikan Nomor WhatsApp Kamu di bawah ini (Ganti 628123456789 dengan nomor WA kamu) -->
+    <input type="hidden" id="myPhoneNumber" value="628123456789"> 
+    <!-- Isikan Email Kamu di bawah ini -->
+    <input type="hidden" id="myEmail" value="emailkamu@gmail.com">
+
+    <div class="step-title">1. Pilih Bunga Favoritmu (Pilih 1 - 5 Bunga):</div>
     <div class="flower-grid" id="flowerContainer"></div>
 
-    <div class="step-title">Pilih Warna Pembungkus (Wrap):</div>
+    <div class="step-title">2. Pilih Warna Pembungkus (Wrap):</div>
     <div class="wrap-grid" id="wrapContainer"></div>
 
-    <button class="btn-submit" onclick="showSurprise()">Buka Kejutannya! ✨</button>
+    <button class="btn-action" onclick="showSurprise()">Lihat Kejutan Buket ✨</button>
   </div>
 
   <!-- Modal Kejutan -->
@@ -247,95 +256,120 @@
     <div class="modal-content">
       <h2>🎉 Kejutan Spesial Untuk Dede Yoyo! 🎉</h2>
       
-      <div class="bouquet-preview" id="bouquetVisual"></div>
+      <div class="bouquet-visual" id="bouquetVisual"></div>
 
-      <h3>Arti dari Buket Pilihan Dede Yoyo:</h3>
-      <div class="meaning-list" id="meaningList"></div>
-
-      <!-- Esai Ungkapan Syukur Otomatis -->
-      <div class="essay-box" id="essayBox">
-        <h4>💌 Surat & Ungkapan Bersyukurku Untuk Dede Yoyo</h4>
+      <div class="essay-box">
+        <h4 style="color:#e63946; text-align:center; margin-bottom:8px;">💌 Surat & Ungkapan Bersyukur</h4>
         <p id="essayContent"></p>
       </div>
 
-      <button class="btn-close" onclick="closeModal()">Coba Racik Bunga Lain 🔄</button>
+      <div style="margin-top: 15px;">
+        <button class="btn-action btn-wa" onclick="sendToWhatsApp()">Kirim ke WhatsApp 🟢</button>
+        <button class="btn-action btn-email" onclick="sendToEmail()">Kirim via Email ✉️</button>
+        <button class="btn-action btn-camera" onclick="openPhotobooth()">Foto Photobooth 📸</button>
+      </div>
+
+      <button class="btn-action btn-secondary" onclick="closeModal('surpriseModal')">Tutup / Racik Ulang 🔄</button>
+    </div>
+  </div>
+
+  <!-- Modal Photobooth Kamera -->
+  <div class="modal" id="photoboothModal">
+    <div class="modal-content">
+      <h2>📸 Photobooth Bingkai Buket Yoyo</h2>
+      <p style="font-size:0.85rem; color:#666;">Izinkan akses kamera di HP-mu ya Dede Yoyo!</p>
+
+      <div class="photobooth-container">
+        <video id="webcam" autoplay playsinline></video>
+        <canvas id="photoCanvas" style="display:none;"></canvas>
+        
+        <!-- Bingkai Overlap Buket -->
+        <div class="frame-overlay" id="frameOverlay">
+          <div class="frame-header">❤️ Special Bouquet for Dede Yoyo ❤️</div>
+          <div class="frame-footer" id="frameFlowers"></div>
+        </div>
+      </div>
+
+      <div>
+        <button class="btn-action" id="snapBtn" onclick="takePhoto()">Ambil Foto 📷</button>
+        <a id="downloadBtn" class="btn-action btn-wa" style="display:none; text-decoration:none;" download="photobooth-yoyo.png">Simpan Foto 💾</a>
+        <button class="btn-action btn-secondary" onclick="retakePhoto()" id="retakeBtn" style="display:none;">Foto Ulang 🔄</button>
+      </div>
+
+      <button class="btn-action btn-secondary" onclick="closePhotobooth()" style="margin-top:10px;">Kembali</button>
     </div>
   </div>
 
   <script>
-    // 20+ Daftar Bunga lengkap dengan fragmen narasi syukur uniknya
+    // 20+ Daftar Bunga Lengkap dengan Foto Asli (Unsplash URL)
     const flowers = [
-      { name: "Mawar Merah", emoji: "🌹", meaning: "Cinta sejati dan hasrat yang mendalam.", note: "Aku sangat bersyukur memiliki rasa cinta semendalam ini padamu. Kehadiranmu memberi warna merah yang membara dalam hidupku meskipun jarak memisahkan." },
-      { name: "Mawar Putih", emoji: "⚪", meaning: "Ketulusan, kesucian, dan kepolosan cinta.", note: "Aku bersyukur atas ketulusan hatimu yang selalu menerima aku apa adanya. Cinta tulus Yoyo adalah tempatku pulang paling damai." },
-      { name: "Mawar Merah Muda", emoji: "🌸", meaning: "Kagum, kelembutan, dan rasa syukur.", note: "Aku tidak pernah berhenti bersyukur dan kagum melihat kelembutan hatimu. Yoyo selalu tahu cara meredakan kekhawatiranku." },
-      { name: "Tulip Merah", emoji: "🌷", meaning: "Deklarasi cinta yang sempurna.", note: "Setiap hari aku bersyukur karena takdir mempertemukanku denganmu—jawaban sempurna atas doa-doaku." },
-      { name: "Tulip Kuning", emoji: "🟡", meaning: "Kecerahan dan senyuman yang hangat.", note: "Aku sangat bersyukur atas senyumanmu yang selalu menjadi sinar matahari di hari-hariku yang sepi." },
-      { name: "Matahari", emoji: "🌻", meaning: "Kesetiaan, kehangatan, dan kebahagiaan.", note: "Terima kasih dan aku bersyukur Yoyo selalu setia menghangatkan hatiku, membuat LDR ini terasa penuh harapan." },
-      { name: "Daisy / Seruni", emoji: "🌼", meaning: "Keceriaan, kepolosan, dan awal baru.", note: "Bersyukur sekali punya Yoyo yang selalu membawa keceriaan sederhana tapi sangat berarti dalam keseharianku." },
-      { name: "Lily Putih", emoji: "🪷", meaning: "Kemurnian hati dan kebangkitan.", note: "Aku bersyukur memiliki seseorang dengan kebaikan hati sepertimu yang selalu memberikan energi positif setiap hari." },
-      { name: "Orkid / Anggrek", emoji: "🌺", meaning: "Keindahan yang langka dan keanggunan.", note: "Yoyo adalah sosok yang sangat istimewa dan langka. Aku bersyukur Tuhan mempercayakanku untuk menjagamu." },
-      { name: "Sakura", emoji: "🌸", meaning: "Keindahan hidup dan momen berharga.", note: "Setiap detik obrolan dan video call dengan Yoyo adalah momen berharga yang selalu aku syukuri." },
-      { name: "Lavender", emoji: "🪻", meaning: "Ketenangan, kedamaian, dan kesetiaan.", note: "Mendengar suaramu saja sudah cukup membuat hatiku tenang. Aku bersyukur Yoyo selalu jadi tempat ketenanganku." },
-      { name: "Forget-Me-Not", emoji: "💙", meaning: "Kenangan abadi dan kenangan indah.", note: "Jarak tidak mengurangi ingatan indah kita. Aku bersyukur tiap kenangan tentang Yoyo selalu manis di hatiku." },
-      { name: "Hydrangea", emoji: "🫐", meaning: "Rasa terima kasih yang tulus dari hati.", note: "Dari lubuk hati yang paling dalam, aku bersyukur atas segala perhatian, kesabaran, dan waktu yang Yoyo berikan." },
-      { name: "Carnation Merah", emoji: "🌺", meaning: "Rasa kagum dan cinta yang mendalam.", note: "Aku bersyukur karena setiap harinya rasa kagumku pada perjuangan dan kebaikan Yoyo makin bertambah." },
-      { name: "Carnation Pink", emoji: "🌸", meaning: "Cinta abadi yang tidak akan pernah pudar.", note: "Aku bersyukur cinta kita terus bertahan melintasi jarak, membuktikan bahwa perasaan ini nyata dan pudar." },
-      { name: "Baby's Breath", emoji: "🤍", meaning: "Cinta murni dan keabadian.", note: "Bersyukur atas hubungan murni yang kita jaga bersama. Harapanku sederhana: ingin terus bersamamu selamanya." },
-      { name: "Melati", emoji: "⚪", meaning: "Keharuman cinta dan kerendahan hati.", note: "Kesederhanaan dan kerendahan hatimu adalah hal yang paling aku syukuri. Kamu sangat berarti untukku." },
-      { name: "Peony", emoji: "🏵️", meaning: "Keberuntungan dan kebahagiaan.", note: "Aku merasa menjadi orang paling beruntung di dunia ini karena memiliki Yoyo di sisiku." },
-      { name: "Iris", emoji: "💜", meaning: "Harapan, kepercayaan, dan persahabatan sejati.", note: "Aku bersyukur Yoyo bukan hanya pasangan, tapi juga sahabat terbaik tempatku berbagi cerita apa saja." },
-      { name: "Aster", emoji: "🟣", meaning: "Cinta yang sabar dan keanggunan.", note: "Terima kasih dan bersyukur atas kesabaran Yoyo seluas samudra dalam menjalani hubungan jarak jauh ini." },
-      { name: "Kamomil", emoji: "🌼", meaning: "Kekuatan dalam menghadapi tantangan/LDR.", note: "Aku bersyukur kita berdua sama-sama kuat dan saling menguatkan meski terpisah jarak dan waktu." },
-      { name: "Dahlia", emoji: "🏵️", meaning: "Ikatan yang kuat dan komitmen.", note: "Aku bersyukur atas komitmen kuat yang Yoyo genggam bersama sampai hari ini. Aku sayang banget sama Yoyo!" }
+      { name: "Mawar Merah", img: "https://images.unsplash.com/photo-1518709268805-4e9042af9f23?w=150", meaning: "Cinta sejati dan hasrat yang mendalam.", note: "Aku sangat bersyukur memiliki rasa cinta semendalam ini padamu. Kehadiran Yoyo memberi warna membara dalam hidupku meski terpisah jarak." },
+      { name: "Mawar Putih", img: "https://images.unsplash.com/photo-1533616688419-b7a585564566?w=150", meaning: "Ketulusan dan kesucian cinta.", note: "Aku bersyukur atas ketulusan hatimu yang selalu menerima aku apa adanya. Cinta Yoyo adalah tempatku pulang paling damai." },
+      { name: "Mawar Pink", img: "https://images.unsplash.com/photo-1559563458-527698bf5295?w=150", meaning: "Kagum dan kelembutan.", note: "Aku tak pernah berhenti bersyukur dan kagum melihat kelembutan hatimu. Yoyo selalu tahu cara meredakan kekhawatiranku." },
+      { name: "Tulip Merah", img: "https://images.unsplash.com/photo-1520763185298-1b434c919102?w=150", meaning: "Deklarasi cinta sempurna.", note: "Setiap hari aku bersyukur takdir mempertemukanku denganmu—jawaban sempurna atas doa-doaku." },
+      { name: "Tulip Kuning", img: "https://images.unsplash.com/photo-1589994160839-163cd867cfe8?w=150", meaning: "Kecerahan dan senyuman hangat.", note: "Aku sangat bersyukur atas senyumanmu yang selalu menjadi sinar hangat di hari-hariku yang sepi." },
+      { name: "Matahari", img: "https://images.unsplash.com/photo-1597848212624-a19eb35e2651?w=150", meaning: "Kesetiaan dan kehangatan.", note: "Terima kasih dan aku bersyukur Yoyo selalu setia menghangatkan hatiku, membuat LDR ini terasa penuh harapan." },
+      { name: "Daisy / Seruni", img: "https://images.unsplash.com/photo-1606041008023-472dfb5e530f?w=150", meaning: "Keceriaan dan kepolosan.", note: "Bersyukur sekali punya Yoyo yang selalu membawa keceriaan sederhana tapi sangat berarti." },
+      { name: "Lily Putih", img: "https://images.unsplash.com/photo-1582794543139-8ac9cb0f7b11?w=150", meaning: "Kemurnian hati.", note: "Aku bersyukur memiliki seseorang dengan kebaikan hati sepertimu yang selalu memberi energi positif." },
+      { name: "Anggrek", img: "https://images.unsplash.com/photo-1525310072745-f49212b5ac6d?w=150", meaning: "Keanggunan yang langka.", note: "Yoyo adalah sosok yang sangat istimewa dan langka. Aku bersyukur Tuhan mempercayakanku untuk menjagamu." },
+      { name: "Sakura", img: "https://images.unsplash.com/photo-1522383225653-ed111181a951?w=150", meaning: "Keindahan momen berharga.", note: "Setiap detik obrolan dan video call dengan Yoyo adalah momen berharga yang selalu aku syukuri." },
+      { name: "Lavender", img: "https://images.unsplash.com/photo-1528183429752-a97d0bf99b5a?w=150", meaning: "Ketenangan dan kedamaian.", note: "Mendengar suaramu saja sudah cukup membuat hatiku tenang. Aku bersyukur Yoyo selalu jadi tempat ketenanganku." },
+      { name: "Hydrangea", img: "https://images.unsplash.com/photo-1508610048659-a06b669e3321?w=150", meaning: "Rasa terima kasih tulus.", note: "Dari lubuk hati yang paling dalam, aku bersyukur atas segala perhatian dan waktu yang Yoyo berikan." },
+      { name: "Baby's Breath", img: "https://images.unsplash.com/photo-1518895949257-7621c3c786d7?w=150", meaning: "Cinta murni abadi.", note: "Bersyukur atas hubungan murni yang kita jaga bersama. Harapanku sederhana: ingin terus bersamamu." },
+      { name: "Peony", img: "https://images.unsplash.com/photo-1563241527-3004b7be0ffd?w=150", meaning: "Keberuntungan dan bahagia.", note: "Aku merasa menjadi orang paling beruntung di dunia ini karena memiliki Yoyo di sisiku." },
+      { name: "Iris", img: "https://images.unsplash.com/photo-1565011523534-747a8601f10a?w=150", meaning: "Harapan dan sahabat sejati.", note: "Aku bersyukur Yoyo bukan hanya pasangan, tapi juga sahabat terbaik tempatku berbagi cerita." },
+      { name: "Kamomil", img: "https://images.unsplash.com/photo-1516205651411-aef33a44f7c2?w=150", meaning: "Kekuatan hadapi LDR.", note: "Aku bersyukur kita berdua sama-sama kuat dan saling menguatkan meski terpisah jarak dan waktu." },
+      { name: "Dahlia", img: "https://images.unsplash.com/photo-1596438459194-f275f413d6ff?w=150", meaning: "Ikatan dan komitmen kuat.", note: "Aku bersyukur atas komitmen kuat yang Yoyo genggam bersama sampai hari ini." },
+      { name: "Carnation", img: "https://images.unsplash.com/photo-1582794543139-8ac9cb0f7b11?w=150", meaning: "Rasa kagum mendalam.", note: "Aku bersyukur rasa kagumku pada perjuangan dan kebaikan Yoyo makin bertambah setiap hari." },
+      { name: "Forget Me Not", img: "https://images.unsplash.com/photo-1509316975850-ff9c5deb0cd9?w=150", meaning: "Kenangan abadi.", note: "Jarak tak mengurangi ingatan indah kita. Aku bersyukur tiap kenangan tentang Yoyo selalu manis." },
+      { name: "Aster", img: "https://images.unsplash.com/photo-1568605117036-5fe5e7bab0b7?w=150", meaning: "Cinta yang sabar.", note: "Terima kasih dan bersyukur atas kesabaran Yoyo seluas samudra dalam menjalani LDR ini." }
     ];
 
-    // Pilihan Wrap
     const wraps = [
       { name: "Pink Soft", color: "#ffb3c1" },
-      { name: "Elegat Black", color: "#333333" },
+      { name: "Elegant Black", color: "#333333" },
       { name: "Pastel Blue", color: "#a2d2ff" },
-      { name: "Classic White", color: "#f8f9fa" },
-      { name: "Gold Luxury", color: "#ffe5ec" }
+      { name: "Classic White", color: "#f8f9fa" }
     ];
 
     let selectedFlowers = [];
     let selectedWrap = wraps[0];
+    let stream = null;
 
-    // Render Bunga
+    // Render Bunga & Wrap
     const flowerContainer = document.getElementById('flowerContainer');
-    flowers.forEach((flower, index) => {
+    flowers.forEach((f, index) => {
       const card = document.createElement('div');
       card.className = 'flower-card';
-      card.innerHTML = `
-        <div class="flower-emoji">${flower.emoji}</div>
-        <div class="flower-name">${flower.name}</div>
-      `;
+      card.innerHTML = `<img src="${f.img}" class="flower-img"><div class="flower-name">${f.name}</div>`;
       card.onclick = () => toggleFlower(index, card);
       flowerContainer.appendChild(card);
     });
 
-    // Render Wrap
     const wrapContainer = document.getElementById('wrapContainer');
-    wraps.forEach((wrap, index) => {
+    wraps.forEach((w, index) => {
       const card = document.createElement('div');
       card.className = `wrap-card ${index === 0 ? 'selected' : ''}`;
-      card.style.backgroundColor = wrap.color;
-      card.style.color = wrap.color === '#333333' ? 'white' : '#333';
-      card.innerText = wrap.name;
-      card.onclick = () => selectWrap(wrap, card);
+      card.style.backgroundColor = w.color;
+      card.style.color = w.color === '#333333' ? 'white' : '#333';
+      card.innerText = w.name;
+      card.onclick = () => {
+        selectedWrap = w;
+        document.querySelectorAll('.wrap-card').forEach(c => c.classList.remove('selected'));
+        card.classList.add('selected');
+      };
       wrapContainer.appendChild(card);
     });
 
     function toggleFlower(index, element) {
       const flower = flowers[index];
       const existIndex = selectedFlowers.findIndex(f => f.name === flower.name);
-
       if (existIndex > -1) {
         selectedFlowers.splice(existIndex, 1);
         element.classList.remove('selected');
       } else {
         if (selectedFlowers.length >= 5) {
-          alert("Maksimal pilih 5 jenis bunga ya Dede Yoyo manis! ❤️");
+          alert("Maksimal pilih 5 jenis bunga ya Dede Yoyo! ❤️");
           return;
         }
         selectedFlowers.push(flower);
@@ -343,48 +377,94 @@
       }
     }
 
-    function selectWrap(wrap, element) {
-      selectedWrap = wrap;
-      document.querySelectorAll('.wrap-card').forEach(c => c.classList.remove('selected'));
-      element.classList.add('selected');
-    }
-
-    function generateEssay(selectedList) {
-      let opening = "Haloo Dede Yoyo manis, lewat buket bunga indah yang kamu racik ini, aku ingin menyampaikan betapa bersyukurnya aku memilikimu. ";
-      let body = selectedList.map(f => f.note).join(" ");
-      let closing = ` Walaupun kita sedang LDR dan tidak bisa tatap muka secara langsung, kombinasi bunga ${selectedList.map(f=>f.name).join(', ')} ini adalah bukti betapa indahnya rasa syukur dan sayagku ke Yoyo. Terima kasih sudah selalu ada untukku yaa. I love you so much, Dede Yoyo! ❤️`;
-
-      return opening + body + closing;
+    function generateText() {
+      let intro = "Halo sayang! Ini buket digital yang dirangkai khusus oleh Dede Yoyo ❤️\n\n";
+      let body = selectedFlowers.map(f => `• ${f.name}: ${f.note}`).join("\n\n");
+      let outro = `\n\nKombinasi bunga ini mewakili rasa bersyukurku memiliki Yoyo. I love you! 💕`;
+      return intro + body + outro;
     }
 
     function showSurprise() {
-      if (selectedFlowers.length === 0) {
-        alert("Pilih minimal 1 bunga dulu yaa Dede Yoyo! ❤️");
-        return;
-      }
+      if (selectedFlowers.length === 0) return alert("Pilih minimal 1 bunga ya Dede Yoyo! ❤️");
+      
+      const visual = document.getElementById('bouquetVisual');
+      visual.style.backgroundColor = selectedWrap.color;
+      visual.innerHTML = selectedFlowers.map(f => `<img src="${f.img}" title="${f.name}">`).join('');
 
-      // Render Buket Visual
-      const bouquetVisual = document.getElementById('bouquetVisual');
-      bouquetVisual.style.backgroundColor = selectedWrap.color;
-      bouquetVisual.innerHTML = selectedFlowers.map(f => f.emoji).join(' ');
-
-      // Render Arti Bunga
-      const meaningList = document.getElementById('meaningList');
-      meaningList.innerHTML = selectedFlowers.map(f => `
-        <div class="meaning-item">
-          <strong>${f.emoji} ${f.name}:</strong> ${f.meaning}
-        </div>
-      `).join('');
-
-      // Render Esai Syukur Otomatis
-      const essayContent = document.getElementById('essayContent');
-      essayContent.innerText = generateEssay(selectedFlowers);
-
+      document.getElementById('essayContent').innerText = generateText();
       document.getElementById('surpriseModal').style.display = 'flex';
     }
 
-    function closeModal() {
-      document.getElementById('surpriseModal').style.display = 'none';
+    function closeModal(id) { document.getElementById(id).style.display = 'none'; }
+
+    // Fitur Kirim Otomatis
+    function sendToWhatsApp() {
+      const phone = document.getElementById('myPhoneNumber').value;
+      const text = encodeURIComponent(generateText());
+      window.open(`https://wa.me/${phone}?text=${text}`, '_blank');
+    }
+
+    function sendToEmail() {
+      const email = document.getElementById('myEmail').value;
+      const subject = encodeURIComponent("Rangkaian Buket & Ungkapan Syukur Dede Yoyo ❤️");
+      const body = encodeURIComponent(generateText());
+      window.open(`mailto:${email}?subject=${subject}&body=${body}`, '_blank');
+    }
+
+    // Fitur Photobooth & Kamera HP
+    async function openPhotobooth() {
+      document.getElementById('photoboothModal').style.display = 'flex';
+      const frameFlowers = document.getElementById('frameFlowers');
+      frameFlowers.innerHTML = selectedFlowers.map(f => `<img src="${f.img}">`).join('');
+
+      try {
+        stream = await navigator.mediaDevices.getUserMedia({ video: { facingMode: "user" } });
+        document.getElementById('webcam').srcObject = stream;
+      } catch (err) {
+        alert("Gagal membuka kamera. Pastikan izinkan akses kamera di HP kamu ya!");
+      }
+    }
+
+    function takePhoto() {
+      const video = document.getElementById('webcam');
+      const canvas = document.getElementById('photoCanvas');
+      const ctx = canvas.getContext('2d');
+
+      canvas.width = video.videoWidth;
+      canvas.height = video.videoHeight;
+      ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
+
+      // Gambar Frame di atas foto Canvas
+      ctx.fillStyle = "rgba(255, 255, 255, 0.8)";
+      ctx.fillRect(10, 10, canvas.width - 20, 40);
+      ctx.font = "bold 20px Segoe UI";
+      ctx.fillStyle = "#e63946";
+      ctx.textAlign = "center";
+      ctx.fillText("❤️ Special Bouquet for Dede Yoyo ❤️", canvas.width / 2, 38);
+
+      video.style.display = 'none';
+      document.getElementById('frameOverlay').style.display = 'none';
+      canvas.style.display = 'block';
+
+      document.getElementById('snapBtn').style.display = 'none';
+      document.getElementById('retakeBtn').style.display = 'inline-block';
+      const downloadBtn = document.getElementById('downloadBtn');
+      downloadBtn.href = canvas.toDataURL('image/png');
+      downloadBtn.style.display = 'inline-block';
+    }
+
+    function retakePhoto() {
+      document.getElementById('webcam').style.display = 'block';
+      document.getElementById('frameOverlay').style.display = 'flex';
+      document.getElementById('photoCanvas').style.display = 'none';
+      document.getElementById('snapBtn').style.display = 'inline-block';
+      document.getElementById('retakeBtn').style.display = 'none';
+      document.getElementById('downloadBtn').style.display = 'none';
+    }
+
+    function closePhotobooth() {
+      if (stream) stream.getTracks().forEach(track => track.stop());
+      closeModal('photoboothModal');
     }
   </script>
 </body>
